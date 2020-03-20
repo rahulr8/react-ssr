@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+
 import { fetchUsers } from "../actions";
 
 class UsersList extends Component {
@@ -24,5 +25,13 @@ class UsersList extends Component {
 const mapStateToProps = state => ({
   users: state.users
 });
+
+// The function that is run on the server to fetch data for this component
+// It returns an action creator
+// This returns a promise, which when resolved allows is to render
+// the app with the required data
+export const loadData = store => {
+  return store.dispatch(fetchUsers());
+};
 
 export default connect(mapStateToProps, { fetchUsers })(UsersList);
