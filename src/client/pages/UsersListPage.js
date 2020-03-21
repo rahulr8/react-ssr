@@ -13,6 +13,7 @@ class UsersList extends Component {
   }
 
   render() {
+    console.log("this.props", this.props);
     return (
       <div>
         Here's a big list of users:
@@ -30,8 +31,11 @@ const mapStateToProps = state => ({
 // It returns an action creator
 // This returns a promise, which when resolved allows is to render
 // the app with the required data
-export const loadData = store => {
+const loadData = store => {
   return store.dispatch(fetchUsers());
 };
 
-export default connect(mapStateToProps, { fetchUsers })(UsersList);
+export default {
+  component: connect(mapStateToProps, { fetchUsers })(UsersList),
+  loadData
+};

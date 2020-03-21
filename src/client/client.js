@@ -18,7 +18,11 @@ import Routes from "./Routes";
 import reducers from "./reducers";
 
 /* Store for client side of the app */
-const store = createStore(reducers, {}, applyMiddleware(thunk));
+const store = createStore(
+  reducers,
+  window.INITIAL_STATE,
+  applyMiddleware(thunk)
+);
 
 ReactDOM.hydrate(
   <Provider store={store}>
